@@ -42,17 +42,15 @@ y <- dat$lifetime
 #Plot of linear correlation coefficients
 #Create the scatter plot with both medication and talking against lifetime in the same plot
 #The blue and red dots and lines represent medication ~ lifetime, talking ~ lifetime
+## Create the plot with the necessary layers inside suppressWarnings() to suppress any warnings
 library(ggplot2)
-suppressWarnings({
-  p <- ggplot(data_long, aes(x = x_value, y = lifetime, color = x_var)) 
-  p + geom_point() + 
+p <- ggplot(data_long, aes(x = x_value, y = lifetime, color = x_var)) +
+    geom_point() + 
     geom_smooth(aes(color = x_var), method = "lm", se = FALSE) +  
     ggtitle(paste("Correlation Coefficients:")) +
     scale_color_manual(values = c("medication" = "blue", "talking" = "red")) + 
     theme(panel.background = element_rect(fill = "white"), plot.title = element_text(hjust = 0.5),  panel.grid.minor = element_line(color = "lightgray", size = 0.25))  
-  
-  ggsave("plot/correlation coefficients.png", plot = p, width = 8, height = 6, dpi = 300)
-})
+print(p)
 
 #Saving the plot
 ggsave("plot/correlation coefficients.png", plot = p, width = 8, height = 6, dpi = 300)

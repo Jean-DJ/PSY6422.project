@@ -1,15 +1,10 @@
 ---
 title: "project"
-author: "Jing"
+author: "Jingjing Dong"
 date: "2024-12-10"
-output:
-  html_document: default
-  pdf_document: default
+output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ## Project Description
 The extent to which medication and talk are linearly associated with lifetime anxiety and depression.
@@ -55,10 +50,9 @@ Merge the four files.
 processing redundant data.
 Extracting usable data
 
-```{r Wrangle Data}
+```{r Wrangle Data, message=FALSE, warning=FALSE}
 # Read R package
-# Suppress the startup messages when loading tidyverse
-suppressPackageStartupMessages(library(tidyverse))
+library(tidyverse)
 
 # Merge data from different files by Entity
 dat_lm <- left_join(dat_l, dat_m, by = "Entity")
@@ -81,7 +75,7 @@ dat <- dat %>% select(-Code.y, -Year.y, -Code.x.x, -Year.x.x, -Code.y.y, -Year.y
 ## Visualise the data
 Draw a scatter plot and a line for the degree of linear correlation
 
-```{r Visualise the Data}
+```{r, message=FALSE, warning=FALSE}
 
 # Calculate correlation coefficients for each pair (medication ~ lifetime and talking ~ lifetime)
 correlation1 <- cor(dat$medication, dat$lifetime)
@@ -92,22 +86,20 @@ data_long <- dat %>%
     pivot_longer(cols = c(medication, talking), names_to = "x_var", values_to = "x_value")
 y <- dat$lifetime
 
-library(ggplot2)
 # Plot of linear correlation coefficients
 # Create the scatter plot with both medication and talking against lifetime in the same plot
 # The blue and red dots and lines represent medication ~ lifetime, talking ~ lifetime
-# Create the plot with the necessary layers inside suppressWarnings() to suppress any warnings
-suppressWarnings({
-p <- ggplot(data_long, aes(x = x_value, y = lifetime, color = x_var)) 
-p + geom_point() + 
-    geom_smooth(aes(color = x_var), method = "lm", se = FALSE) +  
-    ggtitle(paste("Correlation Coefficients:")) +
-    scale_color_manual(values = c("medication" = "blue", "talking" = "red")) + 
-    theme(panel.background = element_rect(fill = "white"), plot.title = element_text(hjust = 0.5),  panel.grid.minor = element_line(color = "lightgray", size = 0.25))  
+library(ggplot2)
+p <- ggplot(data_long, aes(x = x_value, y = lifetime, color = x_var)) +
+  geom_point() + 
+  geom_smooth(aes(color = x_var), method = "lm", se = FALSE) +  
+  ggtitle(paste("Correlation Coefficients:")) +
+  scale_color_manual(values = c("medication" = "blue", "talking" = "red")) + 
+  theme(panel.background = element_rect(fill = "white"), plot.title = element_text(hjust = 0.5),  panel.grid.minor = element_line(color = "lightgray", size = 0.25))  
+print(p)
 
 # Saving the plot to a PNG file
 ggsave("plot/correlation coefficients.png", plot = p, width = 8, height = 6, dpi = 300)
-})
 ```
 
 ## summary

@@ -103,7 +103,7 @@ ggsave("plot/correlation coefficients.png", plot = p, width = 8, height = 6, dpi
 ```
 
 ## summary
-Figure, talking ~ lifetime(red) is positively correlated, medication ~ lifetime(blue) is negatively correlated, and both are small.
+Figure, talking ~ lifetime(red) is positively correlated, medication ~ lifetime(blue) is negatively correlated. Both are small.
 
 Neither of medication and talking have a significant relationship for lifetime depression and anxiety. 
 Though weakly, when medication use is higher, the lifetime depression anxiety data is lower. The data on talking to family and friends grow with the data on lifetime depression and anxiety, and it is high by itself.

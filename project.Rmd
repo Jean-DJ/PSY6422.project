@@ -9,7 +9,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-##Project Description
+## Project Description
+
 
 The extent to which medication and talk are linearly associated with lifetime anxiety and depression.
 
@@ -26,11 +27,14 @@ https://ourworldindata.org/grapher/stand-alone-policy-or-plan-for-mental-health.
 
 The URL for these pages is:
 
+https://jean-dj.github.io/PSY6422.project.JD/
 
 The repository for these pages is:
 
+https://github.com/Jean-DJ/PSY6422.project.JD
 
 
+## Import data
 
 ```{r import data}
 
@@ -44,7 +48,11 @@ dat_l <- read.csv(lifetime_)
 dat_m <- read.csv(medication_)
 dat_t <- read.csv(talking_)
 dat_p <- read.csv(policy_)
+```
 
+## Wrangle Data
+
+```{r Wrangle Data}
 #Read R package
 library(tidyverse)
 
@@ -66,9 +74,7 @@ dat <- dat %>% select(-Code.y, -Year.y, -Code.x.x, -Year.x.x, -Code.y.y, -Year.y
 
 ```
 
-
-## Including Plots
-
+## Visualise the data
 
 ```{r Visualise the Data}
 
@@ -96,11 +102,12 @@ ggsave("plot/correlation coefficients.png", plot = p, width = 8, height = 6, dpi
  
 ```
 
-
+## summary
 Figure, talking ~ lifetime(red) is positively correlated, medication ~ lifetime(blue) is negatively correlated, and both are small.
 
 Neither of medication and talking have a significant relationship for lifetime depression and anxiety. 
 Though weakly, when medication use is higher, the lifetime depression anxiety data is lower. The data on talking to family and friends grow with the data on lifetime depression and anxiety, and it is high by itself.
 
+## future directions
 More interventions that may be helpful for anxiety and depressive disorders could be included to observe the kind of intervention that is more effective. Comparisons could also be made between interventions for lifetime depressive anxiety and all depressive anxiety.
 

@@ -10,8 +10,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Project Description
-
-
 The extent to which medication and talk are linearly associated with lifetime anxiety and depression.
 
 
@@ -27,11 +25,11 @@ https://ourworldindata.org/grapher/stand-alone-policy-or-plan-for-mental-health.
 
 The URL for these pages is:
 
-https://jean-dj.github.io/PSY6422.project.JD/
+https://jean-dj.github.io/PSY6422.project.JD/ 
 
 The repository for these pages is:
 
-https://github.com/Jean-DJ/PSY6422.project.JD
+https://github.com/Jean-DJ/PSY6422.project.JD 
 
 
 ## Import data
